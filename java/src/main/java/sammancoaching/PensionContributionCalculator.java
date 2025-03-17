@@ -13,27 +13,28 @@ public class PensionContributionCalculator {
 
     public BigDecimal calculatePensionContribution(int employeeId, double baseContributionPercentage) {
         Employee employee = databaseAccessLayer.getEmployeeById(employeeId);
-
-        return getBigDecimal(baseContributionPercentage, employee);
+        return calculatePensionContribution(employee.getAnnualSalary(),
+                baseContributionPercentage, employee.getTenure(), employee.getSeniority());
     }
 
-    public static BigDecimal getBigDecimal(double baseContributionPercentage, Employee employee) {
-        if (employee.getAnnualSalary().compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0 || employee.getTenure() < 0) {
+    public static BigDecimal calculatePensionContribution(BigDecimal annualSalary, double baseContributionPercentage, int tenure, SeniorityFactor seniority) {
+        if (annualSalary.compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0 || tenure < 0) {
             throw new IllegalArgumentException("Values must be non-negative.");
         }
 
         double tenureBonus = 0;
-        if (employee.getTenure() >= 10) {
-            tenureBonus = 5; // Additional 5% for employees with 10+ years
-        } else if (employee.getTenure() >= 5) {
-            tenureBonus = 2; // Additional 2% for employees with 5+ years
+        if (tenure >= 10) {
+            tenureBonus = 5;
+        } else if (tenure >= 5) {
+            tenureBonus = 2;
         }
-        double seniorityBonus = employee.getSeniority().getPensionContributionBonus();
+        double seniorityBonus = seniority.getPensionContributionBonus();
         double totalContributionPercentage = baseContributionPercentage + tenureBonus + seniorityBonus;
 
-        return employee.getAnnualSalary()
+        return annualSalary
                 .multiply(BigDecimal.valueOf(totalContributionPercentage))
                 .divide(new BigDecimal("100"), 2, RoundingMode.HALF_UP);
     }
+
 }
 
