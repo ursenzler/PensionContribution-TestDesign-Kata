@@ -1,5 +1,5 @@
 package sammancoaching;
 
-public interface SeniorityFactor {
+public interface SeniorityLevel {
     double getPensionContributionBonus();
 }

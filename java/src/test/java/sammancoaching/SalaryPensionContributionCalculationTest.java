@@ -18,7 +18,7 @@ public class SalaryPensionContributionCalculationTest {
         BigDecimal annualSalary = BigDecimal.valueOf(BASE_SALARY);
         double baseContributionPercentage = BASE_PERCENTAGE;
         int tenure = 0;
-        SeniorityFactor seniority = new MidLevel();
+        SeniorityLevel seniority = new MidLevel();
 
         var actualContribution = PensionContributionCalculator.calculatePensionContribution(
                 annualSalary, baseContributionPercentage, tenure, seniority);

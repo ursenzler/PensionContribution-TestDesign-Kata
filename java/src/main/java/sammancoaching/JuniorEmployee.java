@@ -1,6 +1,6 @@
 package sammancoaching;
 
-class JuniorEmployee implements SeniorityFactor {
+class JuniorEmployee implements SeniorityLevel {
     @Override
     public double getPensionContributionBonus() {
         return 0.0;

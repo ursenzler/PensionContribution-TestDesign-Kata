@@ -5,9 +5,9 @@ import java.math.BigDecimal;
 class Employee {
     private final BigDecimal annualSalary;
     private final int tenure;
-    private final SeniorityFactor seniority;
+    private final SeniorityLevel seniority;
 
-    public Employee(BigDecimal annualSalary, int tenure, SeniorityFactor seniority) {
+    public Employee(BigDecimal annualSalary, int tenure, SeniorityLevel seniority) {
         this.annualSalary = annualSalary;
         this.tenure = tenure;
         this.seniority = seniority;
@@ -21,7 +21,7 @@ class Employee {
         return tenure;
     }
 
-    public SeniorityFactor getSeniority() {
+    public SeniorityLevel getSeniority() {
         return seniority;
     }
 }

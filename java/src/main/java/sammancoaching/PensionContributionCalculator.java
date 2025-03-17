@@ -17,7 +17,7 @@ public class PensionContributionCalculator {
                 baseContributionPercentage, employee.getTenure(), employee.getSeniority());
     }
 
-    public static BigDecimal calculatePensionContribution(BigDecimal annualSalary, double baseContributionPercentage, int tenure, SeniorityFactor seniority) {
+    public static BigDecimal calculatePensionContribution(BigDecimal annualSalary, double baseContributionPercentage, int tenure, SeniorityLevel seniority) {
         if (annualSalary.compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0 || tenure < 0) {
             throw new IllegalArgumentException("Values must be non-negative.");
         }
