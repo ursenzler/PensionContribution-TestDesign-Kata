@@ -14,6 +14,20 @@ public class SalaryPensionContributionCalculationTest {
     private double BASE_SALARY = 60000.0;
 
     @Test
+    public void test1() {
+        BigDecimal annualSalary = BigDecimal.valueOf(BASE_SALARY);
+        double baseContributionPercentage = BASE_PERCENTAGE;
+        int tenure = 0;
+        SeniorityLevel seniority = new JuniorEmployee();
+
+        var actualContribution = PensionContributionCalculator.calculatePensionContribution(
+                annualSalary, baseContributionPercentage, tenure, seniority);
+
+        assertEquals(BASE_SALARY * (BASE_PERCENTAGE / 100),
+                actualContribution.doubleValue(), 0.001);
+    }
+
+    @Test
     public void Mid_Level_Recent_Hire_expects_Standard_Rate_Plus_Medium_Bonus() {
         BigDecimal annualSalary = BigDecimal.valueOf(BASE_SALARY);
         double baseContributionPercentage = BASE_PERCENTAGE;
