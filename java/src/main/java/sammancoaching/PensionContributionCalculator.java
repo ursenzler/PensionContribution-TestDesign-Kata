@@ -28,7 +28,7 @@ public class PensionContributionCalculator {
         }
 
         double tenureBonus = 0;
-        // BUG: Should be a bonus of 5.0 for 20 years of tenure or more, 3.5 for 10 years or more, and 1.5 for 5 years or more
+        // BUG: Should be a bonus of 3.5 for 10 years or more, and 1.5 for 5 years or more
         if (tenureYears >= 10) {
             tenureBonus = 5;
         } else if (tenureYears >= 5) {
