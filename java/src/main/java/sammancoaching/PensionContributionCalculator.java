@@ -23,14 +23,15 @@ public class PensionContributionCalculator {
                                                    double baseContributionPercentage,
                                                    int tenureYears,
                                                    SeniorityLevel seniority) {
-        if (annualSalary.compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0 || tenureYears < 0) {
+        // BUG: Should throw an IllegalArgumentException if either annualSalary or baseContributionPercentage are below zero
+        if (annualSalary.compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0) {
             throw new IllegalArgumentException("Values must be non-negative.");
         }
 
         double tenureBonus = 0;
-        // BUG: Should be a bonus of 3.5 for 10 years or more, and 1.5 for 5 years or more
+        // BUG: Should be a bonus of 3.5 for 10 years or more
         if (tenureYears >= 10) {
-            tenureBonus = 5;
+            tenureBonus = 3.5;
         } else if (tenureYears >= 5) {
             tenureBonus = 2;
         }
@@ -39,10 +40,9 @@ public class PensionContributionCalculator {
         double seniorityBonus = seniority.getPensionContributionBonus();
         double totalContributionPercentage = baseContributionPercentage + tenureBonus + seniorityBonus;
 
-        // BUG: Should be RoundingMode.HALF_UP
         return annualSalary
                 .multiply(BigDecimal.valueOf(totalContributionPercentage))
-                .divide(new BigDecimal("100"), 2, RoundingMode.CEILING);
+                .divide(new BigDecimal("100"), RoundingMode.HALF_UP);
     }
 
 }
