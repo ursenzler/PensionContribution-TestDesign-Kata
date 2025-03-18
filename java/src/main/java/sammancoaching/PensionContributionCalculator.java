@@ -21,7 +21,7 @@ public class PensionContributionCalculator {
         if (annualSalary.compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0 || tenure < 0) {
             throw new IllegalArgumentException("Values must be non-negative.");
         }
-        
+
         double tenureBonus = 0;
         if (tenure >= 10) {
             // BUG: Should be a bonus of 3.5 for over 10 years

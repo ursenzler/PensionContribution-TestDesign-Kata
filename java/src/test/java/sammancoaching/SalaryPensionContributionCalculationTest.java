@@ -13,8 +13,17 @@ public class SalaryPensionContributionCalculationTest {
     private double MID_SENIORITY_PERCENTAGE = 3.0;
     private double BASE_SALARY = 60000.0;
 
+
     @Test
     public void test1() {
+
+        PensionContributionCalculator.calculatePensionContribution(
+                BigDecimal.valueOf(-1), -1, -1, new JuniorEmployee());
+
+    }
+
+    @Test
+    public void test2() {
         BigDecimal annualSalary = BigDecimal.valueOf(BASE_SALARY);
         double baseContributionPercentage = BASE_PERCENTAGE;
         int tenure = 0;
