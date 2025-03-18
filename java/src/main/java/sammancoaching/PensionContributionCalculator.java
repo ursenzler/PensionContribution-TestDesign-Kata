@@ -24,14 +24,11 @@ public class PensionContributionCalculator {
                                                    int tenureYears,
                                                    SeniorityLevel seniority) {
         // BUG: Should throw an IllegalArgumentException if either annualSalary or baseContributionPercentage are below zero
-        if (annualSalary.compareTo(BigDecimal.ZERO) < 0 || baseContributionPercentage < 0) {
-            throw new IllegalArgumentException("Values must be non-negative.");
-        }
 
         double tenureBonus = 0;
         // BUG: Should be a bonus of 3.5 for 10 years or more
         if (tenureYears >= 10) {
-            tenureBonus = 3.5;
+            tenureBonus = 5.0;
         } else if (tenureYears >= 5) {
             tenureBonus = 2;
         }
