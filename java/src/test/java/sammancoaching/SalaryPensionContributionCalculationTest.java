@@ -13,7 +13,7 @@ public class SalaryPensionContributionCalculationTest {
     public static final double LONG_TENURE_PERCENTAGE = 3.5;
     public static final double MEDIUM_TENURE_PERCENTAGE = 2;
     public static final double NO_TENURE_PERCENTAGE = 0.0;
-    public static final double LEADERSHIP_TEAM_PERCENTAGE = 5.0;
+    public static final double LEADERSHIP_TEAM_PERCENTAGE = 2.5;
     public static final double MID_SENIORITY_PERCENTAGE = 3.0;
     public static final double NORMAL_BASE_SALARY = 60000.0;
 
