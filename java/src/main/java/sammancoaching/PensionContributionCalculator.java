@@ -5,42 +5,41 @@ import java.math.RoundingMode;
 
 public class PensionContributionCalculator {
 
-    private final DatabaseAccessLayer databaseAccessLayer;
-    private final double baseContributionPercentage;
+    private final DatabaseAccess databaseAccess;
 
-    public PensionContributionCalculator(DatabaseAccessLayer databaseAccessLayer) {
-        this.databaseAccessLayer = databaseAccessLayer;
-        this.baseContributionPercentage = databaseAccessLayer.lookupValue("BASE_CONTRIBUTION_RATE");
+    public PensionContributionCalculator(DatabaseAccess databaseAccess) {
+        this.databaseAccess = databaseAccess;
     }
 
     public BigDecimal calculatePensionContribution(int employeeId) {
-        Employee employee = databaseAccessLayer.getEmployeeById(employeeId);
-        return calculatePensionContribution(employee.getAnnualSalary(),
-                baseContributionPercentage, employee.getTenure(), employee.getSeniority());
+        Employee employee = databaseAccess.getEmployeeById(employeeId);
+        BigDecimal annualSalary = employee.getAnnualSalary();
+        int tenureYears = employee.getTenure();
+        SeniorityLevel seniority = employee.getSeniority();
+        SalaryContributionPercentages contributionPercentages = new SalaryContributionPercentages(databaseAccess);
+        return calculatePensionContribution(annualSalary, tenureYears, seniority, contributionPercentages);
     }
 
-    static BigDecimal calculatePensionContribution(BigDecimal annualSalary,
-                                                   double baseContributionPercentage,
-                                                   int tenureYears,
-                                                   SeniorityLevel seniority) {
-        // BUG: Should throw an IllegalArgumentException if either annualSalary or baseContributionPercentage are below zero
+    public static BigDecimal calculatePensionContribution(BigDecimal annualSalary, int tenureYears, SeniorityLevel seniority, SalaryContributionPercentages percentages) {
+        // BUG: Should throw an IllegalArgumentException if annualSalary is zero or below
 
-        double tenureBonus = 0;
-        // BUG: Should be a bonus of 3.5 for 10 years or more
+        double tenureBonus = percentages.lookupValue(SalaryContributionPercentages.NO_TENURE_PERCENTAGE);
+        // BUG: Should be a long tenure bonus for 15 years or more
         if (tenureYears >= 10) {
-            tenureBonus = 5.0;
+            tenureBonus = percentages.lookupValue(SalaryContributionPercentages.LONG_TENURE_PERCENTAGE);
         } else if (tenureYears >= 5) {
-            tenureBonus = 2;
+            tenureBonus = percentages.lookupValue(SalaryContributionPercentages.MEDIUM_TENURE_PERCENTAGE);
         }
 
         // BUG: some of the seniority bonuses need adjusting - look in the relevant source files for them
-        double seniorityBonus = seniority.getPensionContributionBonus();
-        double totalContributionPercentage = baseContributionPercentage + tenureBonus + seniorityBonus;
+        double seniorityBonus = seniority.getPensionContributionBonus(percentages);
+        double totalContributionPercentage = percentages.lookupValue(SalaryContributionPercentages.BASE_CONTRIBUTION_RATE) + tenureBonus + seniorityBonus;
 
         return annualSalary
                 .multiply(BigDecimal.valueOf(totalContributionPercentage))
                 .divide(new BigDecimal("100"), RoundingMode.HALF_UP);
     }
+
 
 }
 

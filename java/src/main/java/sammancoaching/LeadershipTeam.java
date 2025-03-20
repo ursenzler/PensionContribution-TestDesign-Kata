@@ -2,8 +2,8 @@ package sammancoaching;
 
 class LeadershipTeam implements SeniorityLevel {
     @Override
-    public double getPensionContributionBonus() {
-        // BUG: Should be 2.5 for leadership team level employees
-        return 5.0;
+    public double getPensionContributionBonus(SalaryContributionPercentages databaseAccess) {
+        // BUG: Should be LEADERSHIP_TEAM_PERCENTAGE
+        return databaseAccess.lookupValue(SalaryContributionPercentages.MID_SENIORITY_PERCENTAGE);
     }
 }
