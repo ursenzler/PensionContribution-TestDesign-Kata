@@ -1,5 +1,5 @@
 package sammancoaching;
 
 public interface SeniorityLevel {
-    double getPensionContributionBonus();
+    double getPensionContributionBonus(SalaryContributionPercentages databaseAccess);
 }

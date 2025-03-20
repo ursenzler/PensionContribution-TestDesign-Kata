@@ -1,6 +1,6 @@
 package sammancoaching;
 
-public interface DatabaseAccessLayer {
+public interface DatabaseAccess {
     Employee getEmployeeById(int employeeId);
 
     double lookupValue(String namedConstant);
