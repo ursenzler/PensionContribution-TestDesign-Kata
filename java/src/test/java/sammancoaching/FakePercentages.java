@@ -2,6 +2,9 @@ package sammancoaching;
 
 import java.util.HashMap;
 
+/**
+ * This class could be useful for unit tests that want to avoid accessing the actual database
+ */
 public class FakePercentages extends SalaryContributionPercentages {
     private final HashMap<String, Double> salaryPercentages;
 
