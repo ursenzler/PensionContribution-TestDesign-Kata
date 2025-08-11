@@ -1,0 +1,20 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net9.0</TargetFramework>
+        <GenerateDocumentationFile>true</GenerateDocumentationFile>
+        <RootNamespace>PensionContributionCalculationsFSharp</RootNamespace>
+    </PropertyGroup>
+
+    <ItemGroup>
+        <Compile Include="Employees.fs" />
+        <Compile Include="Errors.fs" />
+        <Compile Include="PensionContributionCalculations.fs" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <PackageReference Include="FSharp.UMX" Version="1.1.0" />
+      <PackageReference Include="FsToolkit.ErrorHandling" Version="5.0.1" />
+    </ItemGroup>
+
+</Project>

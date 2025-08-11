@@ -1,0 +1,22 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PensionContributionCalculations", "PensionContributionCalculations\PensionContributionCalculations.fsproj", "{5456EE4D-507D-4FDB-8487-C587DCA34F19}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "PensionContributionCalculations.Facts", "PensionContributionCalculations.Facts\PensionContributionCalculations.Facts.fsproj", "{CF4DC201-685F-4F83-9850-3E26B3AB6515}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{5456EE4D-507D-4FDB-8487-C587DCA34F19}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5456EE4D-507D-4FDB-8487-C587DCA34F19}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5456EE4D-507D-4FDB-8487-C587DCA34F19}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5456EE4D-507D-4FDB-8487-C587DCA34F19}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CF4DC201-685F-4F83-9850-3E26B3AB6515}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CF4DC201-685F-4F83-9850-3E26B3AB6515}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CF4DC201-685F-4F83-9850-3E26B3AB6515}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CF4DC201-685F-4F83-9850-3E26B3AB6515}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal
